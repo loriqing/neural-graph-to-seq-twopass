@@ -281,7 +281,7 @@ def main(_):
                 namespace_utils.save_namespace(FLAGS, path_prefix + ".config.json")
                 print('ACCU = %.4f' % best_accu)
                 log_file.write('ACCU = %.4f\n' % best_accu)
-        exit(0)  ## test train output
+#         exit(0)  ## test train output
         print('Start the training loop.')
         train_size = trainDataStream.get_num_batch()
         max_steps = train_size * FLAGS.max_epochs
@@ -318,7 +318,7 @@ def main(_):
                     best_accu, best_bleu = validate_and_save(sess, saver, FLAGS, log_file,
                             devDataStream, valid_graph, path_prefix, best_accu, best_bleu)
                 start_time = time.time()
-                exit(0)   ## test train output
+#                 exit(0)   ## test train output
     log_file.close()
 
 
@@ -442,7 +442,7 @@ if __name__ == '__main__':
     FLAGS.__dict__["device_id"] = device_id
     FLAGS.__dict__["config_path"] = config_path
 
-    FLAGS.batch_size = 1  ## test train output
+#     FLAGS.batch_size = 1  ## test train output
 
     sys.stdout.flush()
     # with tf.device('/gpu:0'):
