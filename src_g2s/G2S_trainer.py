@@ -84,7 +84,7 @@ def evaluate(sess, valid_graph, devDataStream, options=None, suffix=''):
     for batch_index in xrange(devDataStream.get_num_batch()):  # for each batch
         cur_batch = devDataStream.get_batch(batch_index)
         cur_batch = G2S_data_stream.G2SBatchPadd(cur_batch)
-        file = open('../data/train_output.txt', 'a+')
+#         file = open('../data/train_output.txt', 'a+')
         if valid_graph.mode == 'evaluate':
             dic = valid_graph.word_vocab.id2word
             accu1_value, loss_value, vocab_score1, vocab_score2, greedy_words, loss_weights = valid_graph.run_ce_training(sess, cur_batch, options, only_eval=True)
@@ -94,15 +94,15 @@ def evaluate(sess, valid_graph, devDataStream, options=None, suffix=''):
             dev_right1 += accu1_value
             dev_right2 += accu2_value
             dev_total += np.sum(cur_batch.sent_len)
-            with tf.Session() as sess:
-                # sess.run(tf.global_variables_initializer())
-                vocab_score1 = sess.run([vocab_score1])
-                greedy_words = sess.run([greedy_words])
-                vocab_score2 = sess.run([vocab_score2])
-            file.write("target:       " + str(cur_batch.target_ref) + '\n')
-            file.write("out_seqs1:    " + str(_values_to_words(vocab_score1, loss_weights, dic)) + '\n')
-            file.write("greedy_words: " + str(_values_to_words(greedy_words, loss_weights, dic)) + '\n')
-            file.write("out_seqs2:    " + str(_values_to_words(vocab_score2, loss_weights, dic)) + '\n')
+#             with tf.Session() as sess:
+#                 # sess.run(tf.global_variables_initializer())
+#                 vocab_score1 = sess.run([vocab_score1])
+#                 greedy_words = sess.run([greedy_words])
+#                 vocab_score2 = sess.run([vocab_score2])
+#             file.write("target:       " + str(cur_batch.target_ref) + '\n')
+#             file.write("out_seqs1:    " + str(_values_to_words(vocab_score1, loss_weights, dic)) + '\n')
+#             file.write("greedy_words: " + str(_values_to_words(greedy_words, loss_weights, dic)) + '\n')
+#             file.write("out_seqs2:    " + str(_values_to_words(vocab_score2, loss_weights, dic)) + '\n')
         elif valid_graph.mode == 'evaluate_bleu':
             gen.extend(valid_graph.run_greedy(sess, cur_batch, options).tolist())
             ref.extend(cur_batch.sent_out.tolist())
