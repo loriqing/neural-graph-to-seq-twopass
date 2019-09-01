@@ -2,7 +2,7 @@
 from __future__ import print_function
 import os
 os.environ["OMP_NUM_THREADS"] = "3"
-os.environ["MKL_NUM_THREADS"] = "3"  # numpy好像用的是这个
+os.environ["MKL_NUM_THREADS"] = "3" 
 os.environ["OPENBLAS_NUM_THREADS"] = "3"
 os.environ["VECLIB_MAXIMUM_THREADS"] = "3"
 os.environ["NUMEXPR_NUM_THREADS"] = "3"
